@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="main.css">
+    <title>To-do list</title>
+</head>
+<body>
+    <div id="todo">
+        <h1>Мои списки дел<i id="pensil" class="fas fa-pensil-alt"></i></h1>
+        <input type="text" placeholder="Add list">
+        <ul class="todos">
+            <li>
+                <span class="todo-text">вымыть кухню</span>
+                <span><i class=" fas fa-trash-alt"></i></span>
+            </li>
+            <li>
+                <span class="todo-text">пойти в жопу</span>
+                <span><i class=" fas fa-trash-alt"></i></span>
+            </li>
+        </ul>
+        <div id="buttons">
+            <button class="save">сохранить</button>
+            <button class="clear">очистить</button>
+            <button class="showTips">справка</button>
+        </div>
+    </div>
+    <div id="overlay">
+        <a href="javascript:void(0)" class="closeTips">&times;</a>
+        <ul class="tips">
+            <li>Чтобы спрятать или показать поле ввода, кликните на карандаш</li>
+            <li>Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</li>
+            <li>Чтобы удалить один пункт, наведите на него и нажмите на значек корзины</li>
+            <li>Чтобы удалить все списки дел, нажмите "Очистить"</li>
+            <li>Нажмите "сохранить", чтобы сохранить список дел на потом</li>
+        </ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
