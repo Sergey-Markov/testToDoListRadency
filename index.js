@@ -1,5 +1,4 @@
-
-
+// import "bootstrap-icons/font/bootstrap-icons.css";
 const refs = {
      saveButton : document.querySelector('.save'),
      clearButton : document.querySelector('.clear'),
@@ -10,13 +9,16 @@ const refs = {
      ul : document.querySelector('ul.todos'),
 };
 
+console.log(refs.ul.innerHTML);
+
 
 
 function onPageLoaded(){
     
 
     refs.saveButton.addEventListener('click', () => {
-        localStorage.setItem('todos', ul.innerHTML);
+        console.log(refs.ul.innerHTML);
+        localStorage.setItem('todos', refs.ul.innerHTML);
     });
 
     refs.clearButton.addEventListener('click', () => {
@@ -44,7 +46,7 @@ function onPageLoaded(){
         const deleteBtn = document.createElement('span');
         deleteBtn.classList.add('todo-trash');
         const icon = document.createElement('i');
-        icon.classList.add('fas', 'fa-trash-alt');
+        icon.classList.add('bi', 'bi-trash');
         deleteBtn.appendChild(icon);
 
         refs.ul.appendChild(li).append(textSpan, deleteBtn);
@@ -72,17 +74,20 @@ function onPageLoaded(){
     }
 
     function onClickTodo(event){
-        if (event.target.tagName === 'LI'){
+        if (event.target.tagName === 'LI' || event.target.tagName === 'SPAN'){
             event.target.classList.toggle('checked');
-        }
-    }
+        };
+    };
 
     refs.input.addEventListener('keypress', (keyPressed)=> {
         // каждая клавиша на клавиатуре имеет предопределенный код - 13 соответствует клавише "Enter"( сайт для определения "keycode.info")
         const keyEnter = 13;
-        if(keyPressed.wich === keyEnter){
+        if(keyPressed.key === 'Enter'){
             createTodo();
         }
+        setTimeout(() => {
+            localStorage.setItem('todos', refs.ul.innerHTML);
+        }, 300);
     });
 
     refs.ul.addEventListener('click', onClickTodo);
@@ -91,3 +96,8 @@ function onPageLoaded(){
 }
 
 document.addEventListener('DOMContentLoaded', onPageLoaded);
+// document.addEventListener('click', (event) => {
+//     const keyName = event.target;
+  
+//     console.dir(keyName.className);
+//   });

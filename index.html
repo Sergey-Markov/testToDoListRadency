@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="main.css">
     <title>To-do list</title>
 </head>
 <body>
     <div id="todo">
-        <h1>Мои списки дел<i id="pensil" class="fas fa-pensil-alt"></i></h1>
+        <h1>Мои списки дел<i class="bi bi-vector-pen"></i></h1>
         <input class="inputRow" type="text" placeholder="Add list">
-        <ul class="todos">
-            <li>
+        <ul class="todos list">
+            <!-- <li>
                 <span class="todo-text">вымыть кухню</span>
-                <span><i class=" fas fa-trash-alt"></i></span>
+                <span><i class="bi bi-trash"></i></span>
             </li>
             <li>
                 <span class="todo-text">пойти в жопу</span>
-                <span><i class=" fas fa-trash-alt"></i></span>
-            </li>
+                <span><i class="bi bi-trash"></i></span>
+            </li> -->
         </ul>
         <div id="buttons">
             <button class="save">сохранить</button>
@@ -29,14 +29,14 @@
         </div>
     </div>
     <div id="overlay">
-        <a href="javascript:void(0)" class="closeTips">&times;</a>
-        <ul class="tips">
-            <li>Чтобы спрятать или показать поле ввода, кликните на карандаш</li>
-            <li>Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</li>
-            <li>Чтобы удалить один пункт, наведите на него и нажмите на значек корзины</li>
-            <li>Чтобы удалить все списки дел, нажмите "Очистить"</li>
-            <li>Нажмите "сохранить", чтобы сохранить список дел на потом</li>
-        </ul>
+        <a href="javascript:void(0)" class="closeTips"><i class="bi bi-x-octagon closeTips"></i></a>
+        <ol class="tips">
+            <li class="tips_item">Чтобы спрятать или показать поле ввода, кликните на карандаш</li>
+            <li class="tips_item">Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</li>
+            <li class="tips_item">Чтобы удалить один пункт, наведите на него и нажмите на значек корзины</li>
+            <li class="tips_item">Чтобы удалить все списки дел, нажмите "Очистить"</li>
+            <li class="tips_item">Нажмите "сохранить", чтобы сохранить список дел на потом</li>
+        </ol>
     </div>
     <script src="index.js"></script>
 </body>
