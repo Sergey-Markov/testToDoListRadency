@@ -7,6 +7,7 @@ const refs = {
      overlay : document.querySelector('#overlay'), 
      input : document.querySelector('.inputRow'),
      ol : document.querySelector('ol.todos'),
+     song : document.querySelector('#sound'),
 };
 
 
@@ -33,6 +34,7 @@ function onPageLoaded(){
         refs.overlay.style.height = '0';
     });
 
+
     
 
     function createTodo() {
@@ -51,7 +53,7 @@ function onPageLoaded(){
         refs.ol.appendChild(li).append(textSpan, deleteBtn);
         refs.input.value = '';
         listenDeleteTodo(deleteBtn);
-        
+        playSound();
     };
 
     function listenDeleteTodo(element) {
@@ -94,5 +96,18 @@ function onPageLoaded(){
 
     loadTodos();
 }
+
+function playSound(sound) {
+    console.dir(refs.song);
+    // refs.song.volume = 1;
+    if (refs.song.paused) {
+      refs.song.play();
+    } else {
+      refs.song.pause();
+    }
+  }
+
+
+
 
 document.addEventListener('DOMContentLoaded', onPageLoaded);
