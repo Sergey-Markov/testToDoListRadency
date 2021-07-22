@@ -8,14 +8,19 @@ const refs = {
      input : document.querySelector('.inputRow'),
      ol : document.querySelector('ol.todos'),
      song : document.querySelector('#sound'),
+     songPaper: document.querySelector('#sound-paper'),
      btnAdd: document.querySelector('#add-list'),
+     btnPen: document.querySelector('.bi-vector-pen'),
+     divInput: document.querySelector('#input_section'),
 };
 
 
 
 
 function onPageLoaded(){
-    
+    refs.btnPen.addEventListener('click', () => {
+        refs.divInput.classList.toggle('visually-hidden')
+    });
 
     refs.saveButton.addEventListener('click', () => {
         console.log(refs.ol.innerHTML);
@@ -23,8 +28,10 @@ function onPageLoaded(){
     });
 
     refs.clearButton.addEventListener('click', () => {
+        playSoundPaper();
         refs.ol.innerHTML = '';
         localStorage.removeItem('todos', refs.ol.innerHTML);
+
     });
 
     refs.showTipsButton.addEventListener('click', () => {
@@ -35,7 +42,13 @@ function onPageLoaded(){
         refs.overlay.style.height = '0';
     });
 
-    refs.btnAdd.addEventListener('click', createTodo);
+    refs.btnAdd.addEventListener('click', () =>{
+        createTodo();
+        setTimeout(() => {
+            localStorage.setItem('todos', refs.ol.innerHTML);
+            }, 300);
+    });
+    
 
     
 
@@ -62,6 +75,7 @@ function onPageLoaded(){
         element.addEventListener('click', (event) =>{
             element.parentElement.remove();
             localStorage.setItem('todos', refs.ol.innerHTML);
+            playSoundPaper();
             event.stopPropagation();
         });
     };
@@ -101,13 +115,21 @@ function onPageLoaded(){
 
 function playSound(sound) {
     console.dir(refs.song);
-    // refs.song.volume = 1;
     if (refs.song.paused) {
       refs.song.play();
     } else {
       refs.song.pause();
     }
   }
+
+function playSoundPaper(sound) {
+    console.dir(refs.songPaper);
+    if (refs.songPaper.paused) {
+      refs.songPaper.play();
+    } else {
+      refs.songPaper.pause();
+    }
+}
 
 
 
