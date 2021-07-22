@@ -8,6 +8,7 @@ const refs = {
      input : document.querySelector('.inputRow'),
      ol : document.querySelector('ol.todos'),
      song : document.querySelector('#sound'),
+     btnAdd: document.querySelector('#add-list'),
 };
 
 
@@ -34,6 +35,7 @@ function onPageLoaded(){
         refs.overlay.style.height = '0';
     });
 
+    refs.btnAdd.addEventListener('click', createTodo);
 
     
 
