@@ -6,10 +6,9 @@ const refs = {
      closeTipsButton : document.querySelector('.closeTips'),
      overlay : document.querySelector('#overlay'), 
      input : document.querySelector('.inputRow'),
-     ul : document.querySelector('ul.todos'),
+     ol : document.querySelector('ol.todos'),
 };
 
-console.log(refs.ul.innerHTML);
 
 
 
@@ -17,13 +16,13 @@ function onPageLoaded(){
     
 
     refs.saveButton.addEventListener('click', () => {
-        console.log(refs.ul.innerHTML);
-        localStorage.setItem('todos', refs.ul.innerHTML);
+        console.log(refs.ol.innerHTML);
+        localStorage.setItem('todos', refs.ol.innerHTML);
     });
 
     refs.clearButton.addEventListener('click', () => {
-        refs.ul.innerHTML = '';
-        localStorage.removeItem('todos', refs.ul.innerHTML);
+        refs.ol.innerHTML = '';
+        localStorage.removeItem('todos', refs.ol.innerHTML);
     });
 
     refs.showTipsButton.addEventListener('click', () => {
@@ -49,7 +48,7 @@ function onPageLoaded(){
         icon.classList.add('bi', 'bi-trash');
         deleteBtn.appendChild(icon);
 
-        refs.ul.appendChild(li).append(textSpan, deleteBtn);
+        refs.ol.appendChild(li).append(textSpan, deleteBtn);
         refs.input.value = '';
         listenDeleteTodo(deleteBtn);
         
@@ -58,14 +57,15 @@ function onPageLoaded(){
     function listenDeleteTodo(element) {
         element.addEventListener('click', (event) =>{
             element.parentElement.remove();
-            element.stopPropagation();
+            localStorage.setItem('todos', refs.ol.innerHTML);
+            event.stopPropagation();
         });
     };
 
     function loadTodos() {
         const data = localStorage.getItem('todos');
         if(data){
-            refs.ul.innerHTML= data;
+            refs.ol.innerHTML= data;
             const deleteButtons = document.querySelectorAll('span.todo-trash');
             for (const button of deleteButtons){
                 listenDeleteTodo(button)
@@ -86,18 +86,13 @@ function onPageLoaded(){
             createTodo();
         }
         setTimeout(() => {
-            localStorage.setItem('todos', refs.ul.innerHTML);
+            localStorage.setItem('todos', refs.ol.innerHTML);
         }, 300);
     });
 
-    refs.ul.addEventListener('click', onClickTodo);
+    refs.ol.addEventListener('click', onClickTodo);
 
     loadTodos();
 }
 
 document.addEventListener('DOMContentLoaded', onPageLoaded);
-// document.addEventListener('click', (event) => {
-//     const keyName = event.target;
-  
-//     console.dir(keyName.className);
-//   });
