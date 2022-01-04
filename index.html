@@ -13,16 +13,27 @@
     <div id="todo">
         <audio id="sound"><source src="./audio-keyUp.mp3" type="audio/mp3"></audio>
         <h1 class="slideInDown">Мои списки дел<i class="bi bi-vector-pen  slideInRight" >__</i></h1>
-        <div class="input_section" id="input_section">
-            <input class="inputRow" type="text" placeholder="Add list">
-            <button type="button" class="input_svg-btn button_neon" id="add-list">
-                <span></span><span></span><span></span><span></span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
-                    <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"></path>
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"></path>
-                </svg>
-              </button>
-        </div>
+        <form class="input_section" id="input_section">
+                <input class="inputRow" name="name" type="text" placeholder="Add list name">
+                <p id="dateNow"></p>
+                <select class="inputRow" form="input_section" > <!--Supplement an id here instead of using 'name'-->
+                    <option value="value1">Task</option>
+                    <option value="value2" selected>Random Thought</option>
+                    <option value="value3">Idea</option>
+                    <option value="value3">Quote</option>
+                </select>
+                
+                <input class="inputRow" type="text" placeholder="Add list">
+                <input type="date" value="2020-07-22">
+                <button type="button" class="input_svg-btn button_neon" id="add-list">
+                    <span></span><span></span><span></span><span></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                        <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"></path>
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"></path>
+                    </svg>
+                </button>
+            
+        </form>
         <ol class="todos ">
         </ol>
         <div id="buttons">
