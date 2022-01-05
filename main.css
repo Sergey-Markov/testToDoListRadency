@@ -1,61 +1,85 @@
 
-table{
-    table-layout: fixed;
-    width: 800px;
-    border-collapse: collapse;
-    border: 3px solid purple;
-
-    margin-left: auto;
-    margin-right: auto;
-}
-thead th:nth-child(1) {
-    width: 10%;
-  }
-  
-  thead th:nth-child(2) {
-    width: 10%;
-  }
-  
-  thead th:nth-child(3) {
-    width: 15%;
-  }
-  
-  thead th:nth-child(4) {
-    width: 35%;
-  }
-  
-  th, td {
-    padding: 20px;
-  }
-/* .notes_table{
+.notes_table{
+    text-align: center;
+    word-wrap:break-word;
+    max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
-    width: 800px;
-    height: auto;
-    text-align: center;
-
-    background-color: rgb(255, 255, 255);
-    border: 2px solid black;
-    border-radius: 16px;
-} */
-.notes_table-head{
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* width: 770px; */
-    background-color: rgb(206, 198, 198);
-    border-radius: 4px;
-    margin-bottom: 5px;
-    padding: 5px;
 }
-/* .notes_table-head--name{
-    width: 170px;
-    margin-right: 70px;
-} */
-.notes_table-head--btn{
-    color: inherit;
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid rgb(243, 236, 243);
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+thead th:nth-child(1) {
+    width: 15%;
+  }
+  
+  thead th:nth-child(2) {
+    width: 15%;
+  }
+  
+  thead th:nth-child(3) {
+    width: 10%;
+  }
+  
+  thead th:nth-child(4) {
+    width: 25%;
+  }
+  
+  th, td {
+    padding: 5px;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #ff33cc;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e495e4;
+  }
+  
+  tbody tr {
+    background-image: url(noise.png);
+  }
+  
+  table {
+    background-color: #a08e9c;
+  }
+
+  .notes_table-head--btn{
+      border: none;
+      background-color: transparent;
+  }
+  /* .notes_table-head--btn:nth-child(1){
+      margin-left: 95px;
+  } */
+  
+  .notes_table-row--btn{
     border: none;
     background-color: transparent;
-    margin-right: 0;
-    margin-left: 0;
+}
+/* .notes_table-row--btn:nth-child(1){
+    margin-left: 20px;
+} */
+
+.notes_table-word_wrap{
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    padding: 5px; /* Поля вокруг текста */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.create_note{
+    margin-bottom: 15px;
+    border: 3px solid rgb(243, 236, 243);
+    border-radius: 16px;
+
+
 }

@@ -10,108 +10,112 @@
     <title>ToDOList</title>
 </head>
 <body>    
-    <div class="notes_table">
-        <table>
-            <thead >
-             <tr class="notes_table-head">
+    <section class="notes_table">
+        <div>
+            <table>
+                <thead >
+                 <tr>
+                    
+                        <th>Name</th>
+                        <th>Created</th>
+                        <th>Category</th>
+                        <th>Content</th>
+                        <th>Dates</th>
+                    
+                        <th><button type="button" class="notes_table-head--btn"><i class="bi bi-archive"></i></button></th>
+                        <th><button type="button" class="notes_table-head--btn"><i class="bi bi-trash"></i></button></th>
+                    
+                 </tr>
+                </thead>
+               <tbody>
+                 <tr class="notes_table-head">
+                   <td class="notes_table-word_wrap"><i class="bi bi-cart4"></i> Shoping list</td>
+                   <td>April 20, 2021</td>
+                   <td>Task</td>
+                   <td class="notes_table-word_wrap">Tomatoes, breadвввввввввввввв</td>
+                   <td>3/5/2021 3/09/2022</td>
+                   <td>
+                       <button type="button" class="notes_table-row--btn"><i class="bi bi-pencil"></i></button>
+                   </td>
+                   <td>
+                    <button type="button" class="notes_table-row--btn"><i class="bi bi-archive"></i></button>
+                    </td>
+                    <td>
+                        <button type="button" class="notes_table-row--btn"><i class="bi bi-trash"></i></button>
+                    </td>
+                 </tr >
+                 <tr class="notes_table-head">
+                    <td><i class="bi bi-cart4"></i> Shoping list</td>
+                    <td>April 20, 2021</td>
+                    <td>Task</td>
+                    <td>Tomatoes, bread</td>
+                    <td>3/5/2021</td>
+                    <td>
+                        <button type="button" class="notes_table-row--btn"><i class="bi bi-pencil"></i></button>
+                    </td>
+                    <td>
+                     <button type="button" class="notes_table-row--btn"><i class="bi bi-archive"></i></button>
+                     </td>
+                     <td>
+                         <button type="button" class="notes_table-row--btn"><i class="bi bi-trash"></i></button>
+                     </td>
+                  </tr >
                 
-                    <th class="notes_table-head--name">Name</th>
-                    <th>Created</th>
-                    <th>Category</th>
-                    <th>Content</th>
-                    <th>Dates</th>
-                
-                    <th><button type="button" class="notes_table-head--btn"><i class="bi bi-archive"></i></button></th>
-                    <th><button type="button" class="notes_table-head--btn"><i class="bi bi-trash"></i></button></th>
-                
-             </tr>
-            </thead>
-           <tbody>
-             <tr class="notes_table-head">
-               <td><i class="bi bi-cart4"></i> Shoping list</td>
-               <td>April 20, 2021</td>
-               <td>Task</td>
-               <td>Tomatoes, bread</td>
-               <td>3/5/2021</td>
-               <td>
-                   <button type="button"><i class="bi bi-pencil"></i></button>
-               </td>
-               <td>
-                <button type="button"><i class="bi bi-archive"></i></button>
-                </td>
-                <td>
-                    <button type="button"><i class="bi bi-trash"></i></button>
-                </td>
-
-             </tr >
-             <tr class="notes_table-head">
-                <td><i class="bi bi-cart4"></i>Shoping list</td>
-                <td>April 20, 2021</td>
-                <td>Task</td>
-                <td>Tomatoes, bread</td>
-                <td>3/5/2021</td>
-                <td>
-                    <button type="button"><i class="bi bi-pencil"></i></button>
-                </td>
-                <td>
-                 <button type="button"><i class="bi bi-archive"></i></button>
-                 </td>
-                 <td>
-                     <button type="button"><i class="bi bi-trash"></i></button>
-                 </td>
-             </tr>
-           </tbody>  
-           </table>
-    </div>
-    <button type="button">Create Note</button>
-    <div>
+               </tbody>  
+               </table>
+        </div>
+        <button type="button" class="create_note">Create Note</button>
+        <div>
         <table>
             <thead>
-             <tr>
+                <tr>
                 <th>Note Category</th>
                 <th>Active</th>
                 <th>Archived</th>
-             </tr>
+                </tr>
             </thead>
-           <tbody>
-             <tr>
-               <td>Task</td>
-               <td>13</td>
-               <td>4</td>
-             </tr>
-             <tr>
-               <td>Random Thought</td>
-               <td>7</td>
-               <td>12</td>
-             </tr>
-           </tbody>  
-           </table>
-    </div>
-    <form>
-        <fieldset>
-          <legend>Please enter your Note</legend>
-          <div class="mb-3">
-            <label for="inputName" class="form-label">List name</label>
-            <input name="name" type="text" id="inputName" class="form-control" placeholder="Enter list name">
-          </div>
-          <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <select name="category" id="category" class="form-select">
-              <option>Task</option>
-              <option>Random Tought</option>
-              <option>Idea</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="inputContent" class="form-label">List content</label>
-            <input name="content" type="text" id="inputContent" class="form-control" placeholder="Enter list name">
-          </div>
-          <div class="mb-3">
-            <input name="date" type="datetime-local" id="inputContent" class="form-control" placeholder="Enter list name">
-          </div>
-          <button type="button" class="btn btn-primary">Submit</button>
-        </fieldset>
-    </form>
+            <tbody>
+                <tr>
+                <td>Task</td>
+                <td>13</td>
+                <td>4</td>
+                </tr>
+                <tr>
+                <td>Random Thought</td>
+                <td>7</td>
+                <td>12</td>
+                </tr>
+            </tbody>  
+        </table>
+        </div>
+        <div>
+            <form>
+                <fieldset>
+                  <legend>Please enter your Note</legend>
+                  <div class="mb-3">
+                    <label for="inputName" class="form-label">List name</label>
+                    <input name="name" type="text" id="inputName" class="form-control" placeholder="Enter list name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="category" id="category" class="form-select">
+                      <option>Task</option>
+                      <option>Random Tought</option>
+                      <option>Idea</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputContent" class="form-label">List content</label>
+                    <input name="content" type="text" id="inputContent" class="form-control" placeholder="Enter list name">
+                  </div>
+                  <div class="mb-3">
+                    <input name="date" type="datetime-local" id="inputContent" class="form-control" placeholder="Enter list name">
+                  </div>
+                  <button type="button" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
 </body>
