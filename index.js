@@ -36,15 +36,28 @@ function createNote() {
   //   const tr = document.createElement("tr");
   //   tr.classList.add("notes_table-head");
   //   const td = document.createElement("td");
-  const dateOfCreate = new Date();
+  const dateOfCreateMonth = new Date()
+    .toDateString()
+    .split(" ")
+    .splice(1, 2)
+    .join(" ");
+  const dateOfCreateYear = new Date()
+    .toDateString()
+    .split(" ")
+    .splice(3, 3)
+    .join(" ");
+  const dateOfDone = refs.inputDateOfNoteDone.value
+    .split("-")
+    .reverse()
+    .join("/");
   refs.tbodyRootOfNotes.insertAdjacentHTML(
     "beforeend",
     `<tr class="notes_table-head">
   <td class="notes_table-word_wrap"><i class="bi bi-cart4"></i> ${refs.inputNameOfNote.value}</td>
-  <td>${dateOfCreate}</td>
+  <td>${dateOfCreateMonth}, ${dateOfCreateYear}</td>
   <td>${refs.inputCategoryOfNote.value}</td>
   <td class="notes_table-word_wrap">${refs.inputContentOfNote.value}</td>
-  <td>${refs.inputDateOfNoteDone.value}</td>
+  <td>${dateOfDone}</td>
   <td>
       <button type="button" class="notes_table-row--btn"><i class="bi bi-pencil"></i></button>
   </td>
