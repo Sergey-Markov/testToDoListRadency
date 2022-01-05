@@ -45,9 +45,6 @@ thead th:nth-child(1) {
     background-color: #e495e4;
   }
   
-  tbody tr {
-    background-image: url(noise.png);
-  }
   
   table {
     background-color: #a08e9c;

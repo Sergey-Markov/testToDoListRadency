@@ -27,7 +27,7 @@
                     
                  </tr>
                 </thead>
-               <tbody>
+               <tbody id="tbody">
                  <tr class="notes_table-head">
                    <td class="notes_table-word_wrap"><i class="bi bi-cart4"></i> Shoping list</td>
                    <td>April 20, 2021</td>
@@ -94,7 +94,7 @@
                   <legend>Please enter your Note</legend>
                   <div class="mb-3">
                     <label for="inputName" class="form-label">List name</label>
-                    <input name="name" type="text" id="inputName" class="form-control" placeholder="Enter list name">
+                    <input name="name" type="text" id="inputName" class="form-control" placeholder="Enter Note name">
                   </div>
                   <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
@@ -105,13 +105,13 @@
                     </select>
                   </div>
                   <div class="mb-3">
-                    <label for="inputContent" class="form-label">List content</label>
-                    <input name="content" type="text" id="inputContent" class="form-control" placeholder="Enter list name">
+                    <label for="inputContent" class="form-label">Note content</label>
+                    <input name="content" type="text" id="inputContent" class="form-control" placeholder="Enter Note content">
                   </div>
                   <div class="mb-3">
-                    <input name="date" type="datetime-local" id="inputContent" class="form-control" placeholder="Enter list name">
+                    <input name="date" type="date" id="inputDate" class="form-control" >
                   </div>
-                  <button type="button" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-primary"id="btnSubmitForm">Submit</button>
                 </fieldset>
             </form>
         </div>
