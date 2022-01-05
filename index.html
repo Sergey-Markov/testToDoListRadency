@@ -4,57 +4,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon-thirtytwo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
-    <title>To-do list</title>
+    <title>ToDOList</title>
 </head>
-<body>
-    <div id="todo">
-        <audio id="sound"><source src="./audio-keyUp.mp3" type="audio/mp3"></audio>
-        <h1 class="slideInDown">Мои списки дел<i class="bi bi-vector-pen  slideInRight" >__</i></h1>
-        <form class="input_section" id="input_section">
-                <input class="inputRow" name="name" type="text" placeholder="Add list name">
-                <p id="dateNow"></p>
-                <select class="inputRow" form="input_section" > <!--Supplement an id here instead of using 'name'-->
-                    <option value="value1">Task</option>
-                    <option value="value2" selected>Random Thought</option>
-                    <option value="value3">Idea</option>
-                    <option value="value3">Quote</option>
-                </select>
+<body>    
+    <div class="notes_table">
+        <table>
+            <thead >
+             <tr class="notes_table-head">
                 
-                <input class="inputRow" type="text" placeholder="Add list">
-                <input type="date" value="2020-07-22">
-                <button type="button" class="input_svg-btn button_neon" id="add-list">
-                    <span></span><span></span><span></span><span></span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
-                        <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"></path>
-                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"></path>
-                    </svg>
-                </button>
-            
-        </form>
-        <ol class="todos ">
-        </ol>
-        <div id="buttons">
-            <audio id="sound-paper"><source src="./paperWrinkled.mp3" type="audio/mp3"></audio>
-            <button type="button" class="save button_neon">
-                <span></span><span></span><span></span><span></span> сохранить</button>
-            <button type="button" class="clear button_neon"><span></span><span></span><span></span><span></span> очистить</button>
-            <button type="button" class="showTips button_neon"><span></span><span></span><span></span><span></span> справка</button>
-        </div>
+                    <th class="notes_table-head--name">Name</th>
+                    <th>Created</th>
+                    <th>Category</th>
+                    <th>Content</th>
+                    <th>Dates</th>
+                
+                    <th><button type="button" class="notes_table-head--btn"><i class="bi bi-archive"></i></button></th>
+                    <th><button type="button" class="notes_table-head--btn"><i class="bi bi-trash"></i></button></th>
+                
+             </tr>
+            </thead>
+           <tbody>
+             <tr class="notes_table-head">
+               <td><i class="bi bi-cart4"></i> Shoping list</td>
+               <td>April 20, 2021</td>
+               <td>Task</td>
+               <td>Tomatoes, bread</td>
+               <td>3/5/2021</td>
+               <td>
+                   <button type="button"><i class="bi bi-pencil"></i></button>
+               </td>
+               <td>
+                <button type="button"><i class="bi bi-archive"></i></button>
+                </td>
+                <td>
+                    <button type="button"><i class="bi bi-trash"></i></button>
+                </td>
+
+             </tr >
+             <tr class="notes_table-head">
+                <td><i class="bi bi-cart4"></i>Shoping list</td>
+                <td>April 20, 2021</td>
+                <td>Task</td>
+                <td>Tomatoes, bread</td>
+                <td>3/5/2021</td>
+                <td>
+                    <button type="button"><i class="bi bi-pencil"></i></button>
+                </td>
+                <td>
+                 <button type="button"><i class="bi bi-archive"></i></button>
+                 </td>
+                 <td>
+                     <button type="button"><i class="bi bi-trash"></i></button>
+                 </td>
+             </tr>
+           </tbody>  
+           </table>
     </div>
-    <div id="overlay">
-        <a href="javascript:void(0)" class="closeTips"><i class="bi bi-x-octagon closeTips"></i></a>
-        <ol class="tips">
-            <li class="tips_item"><p class="tips_item-text" >Чтобы спрятать или показать поле ввода, кликните на карандаш</p></li>
-            <li class="tips_item"><p class="tips_item-text">Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</p></li>
-            <li class="tips_item"><p class="tips_item-text">Чтобы удалить один пункт, наведите на него и нажмите на значек корзины</p></li>
-            <li class="tips_item"><p class="tips_item-text">Чтобы удалить все списки дел, нажмите "Очистить"</p></li>
-            <li class="tips_item"><p class="tips_item-text">Нажмите "сохранить", чтобы сохранить список дел на потом</p></li>
-        </ol>
+    <button type="button">Create Note</button>
+    <div>
+        <table>
+            <thead>
+             <tr>
+                <th>Note Category</th>
+                <th>Active</th>
+                <th>Archived</th>
+             </tr>
+            </thead>
+           <tbody>
+             <tr>
+               <td>Task</td>
+               <td>13</td>
+               <td>4</td>
+             </tr>
+             <tr>
+               <td>Random Thought</td>
+               <td>7</td>
+               <td>12</td>
+             </tr>
+           </tbody>  
+           </table>
     </div>
-    
-    <script src="index.js"></script>
+    <form>
+        <fieldset>
+          <legend>Please enter your Note</legend>
+          <div class="mb-3">
+            <label for="inputName" class="form-label">List name</label>
+            <input name="name" type="text" id="inputName" class="form-control" placeholder="Enter list name">
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="category" class="form-select">
+              <option>Task</option>
+              <option>Random Tought</option>
+              <option>Idea</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="inputContent" class="form-label">List content</label>
+            <input name="content" type="text" id="inputContent" class="form-control" placeholder="Enter list name">
+          </div>
+          <div class="mb-3">
+            <input name="date" type="datetime-local" id="inputContent" class="form-control" placeholder="Enter list name">
+          </div>
+          <button type="button" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
