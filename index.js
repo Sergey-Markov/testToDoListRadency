@@ -29,20 +29,20 @@ function onPageLoaded() {
   refs.btnSubmitForm.addEventListener("click", (e) => {
     e.preventDefault();
     createNote();
+    countOfActiveCategory();
   });
 }
 
 function createNote() {
   let imgCategory = ``;
-  imgCategory = `<i class="bi bi-cart4"></i>`;
+  imgCategory = `<i class="bi bi-cart4 active"></i>`;
   if (refs.inputCategoryOfNote.value === "Random Tought") {
-    imgCategory = `<i class="bi bi-gear"></i>`;
+    imgCategory = `<i class="bi bi-gear active"></i>`;
   }
 
   if (refs.inputCategoryOfNote.value === "Idea") {
-    imgCategory = `<i class="bi bi-lightbulb"></i>`;
+    imgCategory = `<i class="bi bi-lightbulb active"></i>`;
   }
-  console.log(imgCategory);
   const dateOfCreateMonth = new Date()
     .toDateString()
     .split(" ")
@@ -76,6 +76,17 @@ function createNote() {
    </td>
 </tr >`
   );
+}
+
+function countOfActiveCategory() {
+  const taskCount = document.getElementsByClassName("bi-cart4 active").length;
+  const randomCount = document.getElementsByClassName("bi-gear active").length;
+  const ideakCount = document.getElementsByClassName(
+    "bi-lightbulb active"
+  ).length;
+  console.log(taskCount);
+  console.log(randomCount);
+  console.log(ideakCount);
 }
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
