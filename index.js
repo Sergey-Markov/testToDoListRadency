@@ -33,9 +33,16 @@ function onPageLoaded() {
 }
 
 function createNote() {
-  //   const tr = document.createElement("tr");
-  //   tr.classList.add("notes_table-head");
-  //   const td = document.createElement("td");
+  let imgCategory = ``;
+  imgCategory = `<i class="bi bi-cart4"></i>`;
+  if (refs.inputCategoryOfNote.value === "Random Tought") {
+    imgCategory = `<i class="bi bi-gear"></i>`;
+  }
+
+  if (refs.inputCategoryOfNote.value === "Idea") {
+    imgCategory = `<i class="bi bi-lightbulb"></i>`;
+  }
+  console.log(imgCategory);
   const dateOfCreateMonth = new Date()
     .toDateString()
     .split(" ")
@@ -53,7 +60,7 @@ function createNote() {
   refs.tbodyRootOfNotes.insertAdjacentHTML(
     "beforeend",
     `<tr class="notes_table-head">
-  <td class="notes_table-word_wrap"><i class="bi bi-cart4"></i> ${refs.inputNameOfNote.value}</td>
+  <td class="notes_table-word_wrap">${imgCategory} ${refs.inputNameOfNote.value}</td>
   <td>${dateOfCreateMonth}, ${dateOfCreateYear}</td>
   <td>${refs.inputCategoryOfNote.value}</td>
   <td class="notes_table-word_wrap">${refs.inputContentOfNote.value}</td>
