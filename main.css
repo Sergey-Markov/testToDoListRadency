@@ -73,6 +73,14 @@ thead th:nth-child(1) {
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
 
+
+
+.notes_table-word_wrap:hover{
+  overflow: visible; 
+  white-space: normal;
+  height:auto;  
+}
+
 .create_note{
     margin-bottom: 15px;
     border: 3px solid rgb(243, 236, 243);

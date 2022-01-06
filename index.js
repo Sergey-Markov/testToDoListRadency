@@ -85,11 +85,10 @@ function countOfActiveCategory() {
   const ideakCount = document.getElementsByClassName(
     "bi-lightbulb active"
   ).length;
-  console.log(taskCount);
-  console.log(randomCount);
-  console.log(ideakCount);
+  //   console.log(taskCount);
+  //   console.log(randomCount);
+  //   console.log(ideakCount);
 
-  //   const article = document.querySelector(".article");
   const htmlString = `<tr>
   <td>Task</td>
   <td>${taskCount}</td>
