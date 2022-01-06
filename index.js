@@ -6,6 +6,7 @@ const refs = {
   inputDateOfNoteDone: document.getElementById("inputDate"),
   // My elements
   tbodyRootOfNotes: document.getElementById("tbody"),
+  tbodyCount: document.getElementById("tbodyCount"),
   //   My Btn
   btnSubmitForm: document.getElementById("btnSubmitForm"),
 };
@@ -87,6 +88,25 @@ function countOfActiveCategory() {
   console.log(taskCount);
   console.log(randomCount);
   console.log(ideakCount);
+
+  //   const article = document.querySelector(".article");
+  const htmlString = `<tr>
+  <td>Task</td>
+  <td>${taskCount}</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>Random Thought</td>
+  <td>${randomCount}</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>Idea</td>
+  <td>${ideakCount}</td>
+  <td>0</td>
+</tr>`;
+
+  refs.tbodyCount.innerHTML = htmlString;
 }
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
