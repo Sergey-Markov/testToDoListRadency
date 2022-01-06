@@ -9,6 +9,7 @@ const refs = {
   tbodyCount: document.getElementById("tbodyCount"),
   //   My Btn
   btnSubmitForm: document.getElementById("btnSubmitForm"),
+  deleteBtn: document.getElementById("deleteBtn"),
 };
 
 function onPageLoaded() {
@@ -73,10 +74,13 @@ function createNote() {
    <button type="button" class="notes_table-row--btn"><i class="bi bi-archive"></i></button>
    </td>
    <td>
-       <button type="button" class="notes_table-row--btn"><i class="bi bi-trash"></i></button>
+       <button type="button" class="notes_table-row--btn" id="deleteBtn"><i class="bi bi-trash"></i></button>
    </td>
 </tr >`
   );
+  const deleteBtn = refs.deleteBtn;
+  //   console.log(deleteBtn);
+  listenDeleteNote(deleteBtn);
 }
 
 function countOfActiveCategory() {
@@ -106,6 +110,18 @@ function countOfActiveCategory() {
 </tr>`;
 
   refs.tbodyCount.innerHTML = htmlString;
+}
+
+function listenDeleteNote(element) {
+  console.log(element.parentElement.parentElement);
+
+  element.addEventListener("click", (event) => {
+    element.parentElement.parentElement.remove();
+    // console.log(element.parentElement);
+    // localStorage.setItem('todos', refs.ol.innerHTML);
+    // playSoundPaper();
+    event.stopPropagation();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
