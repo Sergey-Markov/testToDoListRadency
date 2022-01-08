@@ -15,17 +15,14 @@ const refs = {
 function onPageLoaded() {
   document.addEventListener("input", (e) => {
     e.preventDefault();
-    let fuckForm = {
+    let ourForm = {
       name: refs.inputNameOfNote.value,
       category: refs.inputCategoryOfNote.value,
       inputContent: refs.inputContentOfNote.value,
       inputDateOfNoteDone: refs.inputDateOfNoteDone.value,
     };
-    // console.log(fuckForm);
-    const formDataToStringy = JSON.stringify(fuckForm);
-    console.log(formDataToStringy);
+    const formDataToStringy = JSON.stringify(ourForm);
     localStorage.setItem("myToDo", formDataToStringy);
-    // console.log(localStorage.getItem("myToDo"));
   });
 
   refs.btnSubmitForm.addEventListener("click", (e) => {
@@ -55,7 +52,7 @@ function createNote() {
     .join("")
     .split(" ")
     .join("");
-  console.log(idOfNote);
+
   const dateOfCreateMonth = new Date()
     .toDateString()
     .split(" ")
@@ -91,6 +88,8 @@ function createNote() {
   );
   const btn = document.getElementById(idOfNote);
   listenDeleteNote(btn);
+  refs.inputContentOfNote.value = "";
+  refs.inputNameOfNote.value = "";
 }
 
 function countOfActiveCategory() {
