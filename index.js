@@ -9,7 +9,7 @@ const refs = {
   tbodyCount: document.getElementById("tbodyCount"),
   //   My Btn
   btnSubmitForm: document.getElementById("btnSubmitForm"),
-  deleteBtn: document.getElementById("deleteBtn"),
+  deleteBtn: document.getElementById("del"),
 };
 
 function onPageLoaded() {
@@ -45,6 +45,17 @@ function createNote() {
   if (refs.inputCategoryOfNote.value === "Idea") {
     imgCategory = `<i class="bi bi-lightbulb active"></i>`;
   }
+  const idOfNote = new Date()
+    .toLocaleString()
+    .split(",")
+    .join("")
+    .split(".")
+    .join("")
+    .split(":")
+    .join("")
+    .split(" ")
+    .join("");
+  console.log(idOfNote);
   const dateOfCreateMonth = new Date()
     .toDateString()
     .split(" ")
@@ -74,13 +85,12 @@ function createNote() {
    <button type="button" class="notes_table-row--btn"><i class="bi bi-archive"></i></button>
    </td>
    <td>
-       <button type="button" class="notes_table-row--btn" id="deleteBtn"><i class="bi bi-trash"></i></button>
+       <button type="button" class="notes_table-row--btn" id=${idOfNote} ><i class="bi bi-trash" ></i></button>
    </td>
 </tr >`
   );
-  const deleteBtn = refs.deleteBtn;
-  //   console.log(deleteBtn);
-  listenDeleteNote(deleteBtn);
+  const btn = document.getElementById(idOfNote);
+  listenDeleteNote(btn);
 }
 
 function countOfActiveCategory() {
@@ -89,9 +99,6 @@ function countOfActiveCategory() {
   const ideakCount = document.getElementsByClassName(
     "bi-lightbulb active"
   ).length;
-  //   console.log(taskCount);
-  //   console.log(randomCount);
-  //   console.log(ideakCount);
 
   const htmlString = `<tr>
   <td>Task</td>
@@ -113,13 +120,8 @@ function countOfActiveCategory() {
 }
 
 function listenDeleteNote(element) {
-  console.log(element.parentElement.parentElement);
-
   element.addEventListener("click", (event) => {
     element.parentElement.parentElement.remove();
-    // console.log(element.parentElement);
-    // localStorage.setItem('todos', refs.ol.innerHTML);
-    // playSoundPaper();
     event.stopPropagation();
   });
 }
