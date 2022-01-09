@@ -3,8 +3,6 @@ const refs = {
   inputNameOfNote: document.getElementById("inputName"),
   inputCategoryOfNote: document.getElementById("category"),
   inputContentOfNote: document.getElementById("inputContent"),
-  inputDateOfNoteDone: document.getElementById("inputDate"),
-  inputDatesFromText: document.getElementById("datesFromText"),
 
   // My elements
   tbodyRootOfNotes: document.getElementById("tbody"),
@@ -21,7 +19,6 @@ function onPageLoaded() {
       name: refs.inputNameOfNote.value,
       category: refs.inputCategoryOfNote.value,
       inputContent: refs.inputContentOfNote.value,
-      inputDateOfNoteDone: refs.inputDateOfNoteDone.value,
     };
     const formDataToStringy = JSON.stringify(ourForm);
     localStorage.setItem("myToDo", formDataToStringy);
@@ -65,10 +62,7 @@ function createNote() {
     .split(" ")
     .splice(3, 3)
     .join(" ");
-  const dateOfDone = refs.inputDateOfNoteDone.value
-    .split("-")
-    .reverse()
-    .join("/");
+
   refs.tbodyRootOfNotes.insertAdjacentHTML(
     "beforeend",
     `<tr class="notes_table-head" id=${idOfNote}Note>
