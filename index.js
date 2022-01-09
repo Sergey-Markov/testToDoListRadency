@@ -4,6 +4,8 @@ const refs = {
   inputCategoryOfNote: document.getElementById("category"),
   inputContentOfNote: document.getElementById("inputContent"),
   inputDateOfNoteDone: document.getElementById("inputDate"),
+  inputDatesFromText: document.getElementById("datesFromText"),
+
   // My elements
   tbodyRootOfNotes: document.getElementById("tbody"),
   tbodyCount: document.getElementById("tbodyCount"),
@@ -69,12 +71,14 @@ function createNote() {
     .join("/");
   refs.tbodyRootOfNotes.insertAdjacentHTML(
     "beforeend",
-    `<tr class="notes_table-head">
-  <td class="notes_table-word_wrap">${imgCategory} ${refs.inputNameOfNote.value}</td>
+    `<tr class="notes_table-head" id=${idOfNote}Note>
+  <td class="notes_table-word_wrap">${imgCategory} ${
+      refs.inputNameOfNote.value
+    }</td>
   <td>${dateOfCreateMonth}, ${dateOfCreateYear}</td>
   <td>${refs.inputCategoryOfNote.value}</td>
   <td class="notes_table-word_wrap">${refs.inputContentOfNote.value}</td>
-  <td>${dateOfDone}</td>
+  <td>${allDates(refs.inputContentOfNote.value)}</td>
   <td>
       <button type="button" class="notes_table-row--btn"><i class="bi bi-pencil"></i></button>
   </td>
@@ -86,7 +90,16 @@ function createNote() {
    </td>
 </tr >`
   );
+  function allDates(str) {
+    const res = str.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
+    if (res) {
+      return res.join(", ");
+    }
+    return "";
+  }
   const btn = document.getElementById(idOfNote);
+  const trOfMyNote = document.getElementById(`${idOfNote}Note`);
+  console.log(trOfMyNote.innerHTML);
   listenDeleteNote(btn);
   refs.inputContentOfNote.value = "";
   refs.inputNameOfNote.value = "";
