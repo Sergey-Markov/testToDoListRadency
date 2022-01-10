@@ -95,9 +95,8 @@ function createNote() {
 
   // id всей строки заметки
   const trOfMyNote = document.getElementById(`${idOfNote}Note`);
-  const archNote = document.getElementById(`${idOfNote}Note`).innerHTML;
-  // const jyn = trOfMyNote.innerHTML;
-  // console.log(jyn);
+  const archNote = trOfMyNote.innerHTML;
+  console.log(trOfMyNote);
 
   const contentOfNote = document.getElementById(`${idOfNote}contentOfNote`);
 
@@ -181,6 +180,16 @@ function listenArchiveNote(btn, myNote, archNote) {
     myNote.remove();
     countOfActiveCategory();
     event.stopPropagation();
+    // restoreNote()
+  });
+}
+function restoreNote(tr, myNote, archNote) {
+  tr.addEventListener("click", (event) => {
+    tr.insertAdjacentHTML(
+      "afterend",
+      `<button type="button" class="btn btn-primary" id="btnRestore">Restore</button>
+      <button type="button" class="btn btn-primary" id="btnRestoreCancel">Cancel</button>`
+    );
   });
 }
 
