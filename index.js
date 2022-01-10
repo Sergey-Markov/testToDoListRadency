@@ -3,6 +3,7 @@ const refs = {
   inputNameOfNote: document.getElementById("inputName"),
   inputCategoryOfNote: document.getElementById("category"),
   inputContentOfNote: document.getElementById("inputContent"),
+  inputChangeContent: document.getElementById("inputChangeContent"),
 
   // My elements
   tbodyRootOfNotes: document.getElementById("tbody"),
@@ -71,10 +72,12 @@ function createNote() {
     }</td>
   <td>${dateOfCreateMonth}, ${dateOfCreateYear}</td>
   <td>${refs.inputCategoryOfNote.value}</td>
-  <td class="notes_table-word_wrap">${refs.inputContentOfNote.value}</td>
-  <td>${allDates(refs.inputContentOfNote.value)}</td>
+  <td class="notes_table-word_wrap" id=${idOfNote}contentOfNote>${
+      refs.inputContentOfNote.value
+    }</td>
+  <td id=${idOfNote}NoteDates>${allDates(refs.inputContentOfNote.value)}</td>
   <td>
-      <button type="button" class="notes_table-row--btn"><i class="bi bi-pencil"></i></button>
+      <button type="button" class="notes_table-row--btn " id=${idOfNote}changeBtn><i class="bi bi-pencil"></i></button>
   </td>
   <td>
    <button type="button" class="notes_table-row--btn"><i class="bi bi-archive"></i></button>
@@ -84,19 +87,21 @@ function createNote() {
    </td>
 </tr >`
   );
-  function allDates(str) {
-    const res = str.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
-    if (res) {
-      return res.join(", ");
-    }
-    return "";
-  }
+
+  const noteDates = document.getElementById(`${idOfNote}NoteDates`);
   const btn = document.getElementById(idOfNote);
+
+  // id всей строки заметки
   const trOfMyNote = document.getElementById(`${idOfNote}Note`);
-  console.log(trOfMyNote.innerHTML);
+
+  const contentOfNote = document.getElementById(`${idOfNote}contentOfNote`);
+
   listenDeleteNote(btn);
   refs.inputContentOfNote.value = "";
   refs.inputNameOfNote.value = "";
+
+  const btnChange = document.getElementById(`${idOfNote}changeBtn`);
+  changeContent(btnChange, contentOfNote, noteDates);
 }
 
 function countOfActiveCategory() {
@@ -124,12 +129,37 @@ function countOfActiveCategory() {
 
   refs.tbodyCount.innerHTML = htmlString;
 }
-
+function changeContent(elBtn, elChange, noteDates) {
+  elBtn.addEventListener("click", (event) => {
+    elChange.insertAdjacentHTML(
+      "afterend",
+      `<button type="button" class="btn btn-primary" id="btnSubmitChange">Submit</button>`
+    );
+    elChange.setAttribute("contentEditable", "true");
+    elChange.focus({ preventScroll: true });
+    const btnSubmitChange = document.getElementById("btnSubmitChange");
+    btnSubmitChange.addEventListener("click", (event) => {
+      elChange.setAttribute("contentEditable", "false");
+      console.log(elChange.innerHTML);
+      noteDates.innerHTML = allDates(elChange.innerHTML);
+      btnSubmitChange.remove();
+      event.stopPropagation();
+    });
+    event.stopPropagation();
+  });
+}
 function listenDeleteNote(element) {
   element.addEventListener("click", (event) => {
     element.parentElement.parentElement.remove();
     event.stopPropagation();
   });
+}
+function allDates(str) {
+  const res = str.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
+  if (res) {
+    return res.join(", ");
+  }
+  return "";
 }
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
