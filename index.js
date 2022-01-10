@@ -126,7 +126,7 @@ function countOfActiveCategory() {
   <td>${ideakCount}</td>
   <td>0</td>
 </tr>`;
-
+  console.log(ideakCount);
   refs.tbodyCount.innerHTML = htmlString;
 }
 function changeContent(elBtn, elChange, noteDates) {
@@ -151,6 +151,7 @@ function changeContent(elBtn, elChange, noteDates) {
 function listenDeleteNote(element) {
   element.addEventListener("click", (event) => {
     element.parentElement.parentElement.remove();
+    countOfActiveCategory();
     event.stopPropagation();
   });
 }
