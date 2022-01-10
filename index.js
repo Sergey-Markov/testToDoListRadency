@@ -7,6 +7,8 @@ const refs = {
 
   // My elements
   tbodyRootOfNotes: document.getElementById("tbody"),
+  tbodyRootOfArchiveNotes: document.getElementById("tbodyArchives"),
+
   tbodyCount: document.getElementById("tbodyCount"),
   //   My Btn
   btnSubmitForm: document.getElementById("btnSubmitForm"),
@@ -80,7 +82,7 @@ function createNote() {
       <button type="button" class="notes_table-row--btn " id=${idOfNote}changeBtn><i class="bi bi-pencil"></i></button>
   </td>
   <td>
-   <button type="button" class="notes_table-row--btn"><i class="bi bi-archive"></i></button>
+   <button type="button" class="notes_table-row--btn" id=${idOfNote}archiveBtn><i class="bi bi-archive"></i></button>
    </td>
    <td>
        <button type="button" class="notes_table-row--btn" id=${idOfNote} ><i class="bi bi-trash" ></i></button>
@@ -93,6 +95,9 @@ function createNote() {
 
   // id всей строки заметки
   const trOfMyNote = document.getElementById(`${idOfNote}Note`);
+  const archNote = document.getElementById(`${idOfNote}Note`).innerHTML;
+  // const jyn = trOfMyNote.innerHTML;
+  // console.log(jyn);
 
   const contentOfNote = document.getElementById(`${idOfNote}contentOfNote`);
 
@@ -100,33 +105,53 @@ function createNote() {
   refs.inputContentOfNote.value = "";
   refs.inputNameOfNote.value = "";
 
+  const btnArchive = document.getElementById(`${idOfNote}archiveBtn`);
+  listenArchiveNote(btnArchive, trOfMyNote, archNote);
+
   const btnChange = document.getElementById(`${idOfNote}changeBtn`);
   changeContent(btnChange, contentOfNote, noteDates);
 }
 
 function countOfActiveCategory() {
-  const taskCount = document.getElementsByClassName("bi-cart4 active").length;
-  const randomCount = document.getElementsByClassName("bi-gear active").length;
-  const ideakCount = document.getElementsByClassName(
+  const taskCount =
+    refs.tbodyRootOfNotes.getElementsByClassName("bi-cart4 active").length;
+  const randomCount =
+    refs.tbodyRootOfNotes.getElementsByClassName("bi-gear active").length;
+  const ideakCount = refs.tbodyRootOfNotes.getElementsByClassName(
     "bi-lightbulb active"
   ).length;
+
+  const taskCountArchive =
+    refs.tbodyRootOfArchiveNotes.getElementsByClassName(
+      "bi-cart4 active"
+    ).length;
+  // console.log(taskCountArchive);
+  const randomCountArchive =
+    refs.tbodyRootOfArchiveNotes.getElementsByClassName(
+      "bi-gear active"
+    ).length;
+  // console.log(randomCountArchive);
+  const ideakCountArchive = refs.tbodyRootOfArchiveNotes.getElementsByClassName(
+    "bi-lightbulb active"
+  ).length;
+  // console.log(ideakCountArchive);
 
   const htmlString = `<tr>
   <td>Task</td>
   <td>${taskCount}</td>
-  <td>0</td>
+  <td>${taskCountArchive}</td>
 </tr>
 <tr>
   <td>Random Thought</td>
   <td>${randomCount}</td>
-  <td>0</td>
+  <td>${randomCountArchive}</td>
 </tr>
 <tr>
   <td>Idea</td>
   <td>${ideakCount}</td>
-  <td>0</td>
+  <td>${ideakCountArchive}</td>
 </tr>`;
-  console.log(ideakCount);
+
   refs.tbodyCount.innerHTML = htmlString;
 }
 function changeContent(elBtn, elChange, noteDates) {
@@ -148,6 +173,17 @@ function changeContent(elBtn, elChange, noteDates) {
     event.stopPropagation();
   });
 }
+
+function listenArchiveNote(btn, myNote, archNote) {
+  btn.addEventListener("click", (event) => {
+    refs.tbodyRootOfArchiveNotes.insertAdjacentHTML("beforeend", archNote);
+
+    myNote.remove();
+    countOfActiveCategory();
+    event.stopPropagation();
+  });
+}
+
 function listenDeleteNote(element) {
   element.addEventListener("click", (event) => {
     element.parentElement.parentElement.remove();
