@@ -32,6 +32,77 @@ function onPageLoaded() {
     createNote();
     countOfActiveCategory();
   });
+  document
+    .querySelector(".parentFirst")
+    .addEventListener("click", function (e) {
+      if (e.target.classList.value === "bi bi-trash del") {
+        const tr = e.target.parentElement.parentElement.parentElement;
+        tr.remove();
+        countOfActiveCategory();
+        e.stopPropagation();
+      }
+    });
+
+  document
+    .querySelector(".parentFirst")
+    .addEventListener("click", function (e) {
+      if (e.target.classList.value === "bi bi-archive") {
+        const tr = e.target.parentElement.parentElement.parentElement;
+        refs.tbodyRootOfArchiveNotes.insertAdjacentHTML(
+          "beforeend",
+          tr.innerHTML
+        );
+        e.stopPropagation();
+        tr.remove();
+        countOfActiveCategory();
+      }
+    });
+
+  document.querySelector(".parent").addEventListener("click", function (e) {
+    if (e.target.classList.value === "bi bi-trash del") {
+      const tr = e.target.parentElement.parentElement.parentElement;
+      tr.remove();
+      countOfActiveCategory();
+      e.stopPropagation();
+    }
+  });
+  document.querySelector(".parent").addEventListener("click", function (e) {
+    if (e.target.classList.value === "bi bi-archive") {
+      const tr = e.target.parentElement.parentElement.parentElement;
+      refs.tbodyRootOfNotes.insertAdjacentHTML("beforeend", tr.innerHTML);
+      e.stopPropagation();
+      tr.remove();
+      countOfActiveCategory();
+    }
+  });
+
+  document
+    .querySelector(".parentFirst")
+    .addEventListener("click", function (e) {
+      if (e.target.classList.value === "bi bi-pencil") {
+        const elBtn = e.target.parentElement;
+        const elChange =
+          elBtn.parentElement.previousElementSibling.previousElementSibling;
+        const noteDates = elBtn.parentElement.previousElementSibling;
+
+        elChange.insertAdjacentHTML(
+          "afterend",
+          `<button type="button" class="btn btn-primary" id="btnSubmitChange">Submit</button>`
+        );
+        elChange.setAttribute("contentEditable", "true");
+        elChange.focus({ preventScroll: true });
+        const btnSubmitChange = document.getElementById("btnSubmitChange");
+        btnSubmitChange.addEventListener("click", (event) => {
+          elChange.setAttribute("contentEditable", "false");
+          noteDates.innerHTML = allDates(elChange.innerHTML);
+          btnSubmitChange.remove();
+          event.stopPropagation();
+        });
+
+        countOfActiveCategory();
+        e.stopPropagation();
+      }
+    });
 }
 
 function createNote() {
@@ -85,20 +156,17 @@ function createNote() {
    <button type="button" class="notes_table-row--btn" id=${idOfNote}archiveBtn><i class="bi bi-archive"></i></button>
    </td>
    <td>
-       <button type="button" class="notes_table-row--btn" id=${idOfNote} ><i class="bi bi-trash" ></i></button>
+       <button type="button" class="notes_table-row--btn del" id=${idOfNote} ><i class="bi bi-trash del" ></i></button>
    </td>
 </tr >`
   );
 
-  const noteDates = document.getElementById(`${idOfNote}NoteDates`);
   const btn = document.getElementById(idOfNote);
 
-  // id всей строки заметки
-  const trOfMyNote = document.getElementById(`${idOfNote}Note`);
-  const archNote = trOfMyNote.innerHTML;
-  console.log(trOfMyNote);
-
   const contentOfNote = document.getElementById(`${idOfNote}contentOfNote`);
+
+  const trOfMyNote = contentOfNote.parentElement;
+  const archNote = trOfMyNote.innerHTML;
 
   listenDeleteNote(btn);
   refs.inputContentOfNote.value = "";
@@ -108,7 +176,6 @@ function createNote() {
   listenArchiveNote(btnArchive, trOfMyNote, archNote);
 
   const btnChange = document.getElementById(`${idOfNote}changeBtn`);
-  changeContent(btnChange, contentOfNote, noteDates);
 }
 
 function countOfActiveCategory() {
@@ -153,43 +220,13 @@ function countOfActiveCategory() {
 
   refs.tbodyCount.innerHTML = htmlString;
 }
-function changeContent(elBtn, elChange, noteDates) {
-  elBtn.addEventListener("click", (event) => {
-    elChange.insertAdjacentHTML(
-      "afterend",
-      `<button type="button" class="btn btn-primary" id="btnSubmitChange">Submit</button>`
-    );
-    elChange.setAttribute("contentEditable", "true");
-    elChange.focus({ preventScroll: true });
-    const btnSubmitChange = document.getElementById("btnSubmitChange");
-    btnSubmitChange.addEventListener("click", (event) => {
-      elChange.setAttribute("contentEditable", "false");
-      console.log(elChange.innerHTML);
-      noteDates.innerHTML = allDates(elChange.innerHTML);
-      btnSubmitChange.remove();
-      event.stopPropagation();
-    });
-    event.stopPropagation();
-  });
-}
 
 function listenArchiveNote(btn, myNote, archNote) {
   btn.addEventListener("click", (event) => {
     refs.tbodyRootOfArchiveNotes.insertAdjacentHTML("beforeend", archNote);
-
     myNote.remove();
     countOfActiveCategory();
     event.stopPropagation();
-    // restoreNote()
-  });
-}
-function restoreNote(tr, myNote, archNote) {
-  tr.addEventListener("click", (event) => {
-    tr.insertAdjacentHTML(
-      "afterend",
-      `<button type="button" class="btn btn-primary" id="btnRestore">Restore</button>
-      <button type="button" class="btn btn-primary" id="btnRestoreCancel">Cancel</button>`
-    );
   });
 }
 
