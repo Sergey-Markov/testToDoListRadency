@@ -8,30 +8,45 @@ const refs = {
   // My elements
   tbodyRootOfNotes: document.getElementById("tbody"),
   tbodyRootOfArchiveNotes: document.getElementById("tbodyArchives"),
-
+  archTableField: document.getElementById("archTableField"),
   tbodyCount: document.getElementById("tbodyCount"),
   //   My Btn
   btnSubmitForm: document.getElementById("btnSubmitForm"),
   deleteBtn: document.getElementById("del"),
+  showArchTable: document.getElementById("showArchTable"),
+  deleteAllNotes: document.getElementById("deleteAllNotes"),
+  closeArchive: document.getElementById("closeArchive"),
 };
 
 function onPageLoaded() {
-  document.addEventListener("input", (e) => {
-    e.preventDefault();
-    let ourForm = {
-      name: refs.inputNameOfNote.value,
-      category: refs.inputCategoryOfNote.value,
-      inputContent: refs.inputContentOfNote.value,
-    };
-    const formDataToStringy = JSON.stringify(ourForm);
-    localStorage.setItem("myToDo", formDataToStringy);
-  });
+  const keys = {
+    notes: "notes",
+    archNotes: "archNotes",
+  };
 
   refs.btnSubmitForm.addEventListener("click", (e) => {
     e.preventDefault();
     createNote();
     countOfActiveCategory();
   });
+
+  refs.showArchTable.addEventListener("click", (e) => {
+    e.preventDefault();
+    refs.archTableField.classList.toggle("closeTable");
+  });
+  refs.closeArchive.addEventListener("click", (e) => {
+    e.preventDefault();
+    refs.archTableField.classList.toggle("closeTable");
+  });
+
+  refs.deleteAllNotes.addEventListener("click", (e) => {
+    e.preventDefault();
+    refs.tbodyRootOfNotes.innerHTML = "";
+    refs.tbodyRootOfArchiveNotes.innerHTML = "";
+    countOfActiveCategory();
+    saveNotes();
+  });
+
   document
     .querySelector(".parentFirst")
     .addEventListener("click", function (e) {
@@ -40,6 +55,7 @@ function onPageLoaded() {
         tr.remove();
         countOfActiveCategory();
         e.stopPropagation();
+        saveNotes();
       }
     });
 
@@ -55,6 +71,7 @@ function onPageLoaded() {
         e.stopPropagation();
         tr.remove();
         countOfActiveCategory();
+        saveNotes();
       }
     });
 
@@ -64,6 +81,7 @@ function onPageLoaded() {
       tr.remove();
       countOfActiveCategory();
       e.stopPropagation();
+      saveNotes();
     }
   });
   document.querySelector(".parent").addEventListener("click", function (e) {
@@ -73,6 +91,7 @@ function onPageLoaded() {
       e.stopPropagation();
       tr.remove();
       countOfActiveCategory();
+      saveNotes();
     }
   });
 
@@ -96,13 +115,17 @@ function onPageLoaded() {
           elChange.setAttribute("contentEditable", "false");
           noteDates.innerHTML = allDates(elChange.innerHTML);
           btnSubmitChange.remove();
+          saveNotes();
           event.stopPropagation();
         });
 
         countOfActiveCategory();
         e.stopPropagation();
+        saveNotes();
       }
     });
+  loadNotes(keys.notes, refs.tbodyRootOfNotes);
+  loadNotes(keys.archNotes, refs.tbodyRootOfArchiveNotes);
 }
 
 function createNote() {
@@ -175,7 +198,8 @@ function createNote() {
   const btnArchive = document.getElementById(`${idOfNote}archiveBtn`);
   listenArchiveNote(btnArchive, trOfMyNote, archNote);
 
-  const btnChange = document.getElementById(`${idOfNote}changeBtn`);
+  // const btnChange = document.getElementById(`${idOfNote}changeBtn`);
+  saveNotes();
 }
 
 function countOfActiveCategory() {
@@ -227,6 +251,7 @@ function listenArchiveNote(btn, myNote, archNote) {
     myNote.remove();
     countOfActiveCategory();
     event.stopPropagation();
+    saveNotes();
   });
 }
 
@@ -235,6 +260,7 @@ function listenDeleteNote(element) {
     element.parentElement.parentElement.remove();
     countOfActiveCategory();
     event.stopPropagation();
+    saveNotes();
   });
 }
 function allDates(str) {
@@ -243,6 +269,17 @@ function allDates(str) {
     return res.join(", ");
   }
   return "";
+}
+
+function saveNotes() {
+  localStorage.setItem("notes", refs.tbodyRootOfNotes.innerHTML);
+  localStorage.setItem("archNotes", refs.tbodyRootOfArchiveNotes.innerHTML);
+}
+
+function loadNotes(key, root) {
+  const data = localStorage.getItem(key);
+  if (data) root.innerHTML = data;
+  countOfActiveCategory();
 }
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
